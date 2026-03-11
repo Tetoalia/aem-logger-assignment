@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Component definition for the Hero Slider.
+    Place this file at:
+      /apps/academy-alia/components/heroslider/.content.xml
+-->
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:Component"
+          jcr:title="Test Slider"
+          jcr:description="Full-width hero slider with configurable slides (image, title, pretitle, subtitle, CTA)."
+          sling:resourceSuperType="wcm/foundation/components/responsivegrid"
+          componentGroup="Academy WKND Sites Project - Content"/>

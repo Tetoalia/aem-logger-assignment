@@ -1,0 +1,70 @@
+<!--/* customlist.html */-->
+<sly data-sly-use.model="it.codeland.academy.alia.core.models.SubPageTextModel"/>
+
+<div class="cmp-customlist">
+
+    <!--/* Step 4: Section Label */-->
+    <sly data-sly-test="${properties.sectionLabel}">
+        <h2 class="cmp-customlist__label">${properties.sectionLabel @ context='text'}</h2>
+    </sly>
+
+    <!--/* Step 4 + 5: List items with subpage text */-->
+    <sly data-sly-test="${model.pageItems.size > 0}">
+        <ul class="cmp-customlist__grid cmp-customlist__grid--cols-${properties.cardsPerRow @ context='attribute'}">
+            <sly data-sly-list.item="${model.pageItems}">
+                <li class="cmp-customlist__card">
+
+                    <!--/* Page title as link */-->
+                    <h3 class="cmp-customlist__title">
+                        <a href="${item.path @ extension='html', context='uri'}">
+                            ${item.title @ context='text'}
+                        </a>
+                    </h3>
+
+                    <!--/* Step 5: Text from hardcoded component inside subpage */-->
+                    <sly data-sly-test="${item.subText}">
+                        <p class="cmp-customlist__subtext">
+                            ${item.subText @ context='html'}
+                        </p>
+                    </sly>
+
+                </li>
+            </sly>
+        </ul>
+
+        <!--/* Step 6: Pagination controls */-->
+        <nav class="cmp-customlist__pagination">
+
+            <!--/* Previous button */-->
+            <sly data-sly-test="${model.hasPrevious}">
+                <a class="cmp-customlist__pagination-btn"
+                   href="${model.previousUrl @ context='uri'}">
+                    &lsaquo; Previous
+                </a>
+            </sly>
+
+            <!--/* Page counter: e.g. "Page 1 of 2" */-->
+            <span class="cmp-customlist__pagination-info">
+                Page ${model.currentPageNum} of ${model.totalPages}
+            </span>
+
+            <!--/* Next button */-->
+            <sly data-sly-test="${model.hasNext}">
+                <a class="cmp-customlist__pagination-btn"
+                   href="${model.nextUrl @ context='uri'}">
+                    Next &rsaquo;
+                </a>
+            </sly>
+
+        </nav>
+
+    </sly>
+
+    <!--/* Edit mode placeholder */-->
+    <sly data-sly-test="${model.pageItems.size == 0 && wcmmode.edit}">
+        <div class="cmp-customlist__placeholder">
+            Custom List — open the dialog to configure items.
+        </div>
+    </sly>
+
+</div>

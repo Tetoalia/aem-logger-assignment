@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/alia/clientlibs"/>
+    <filter root="/apps/alia/components"/>
+    <filter root="/apps/alia/i18n"/>
+</workspaceFilter>

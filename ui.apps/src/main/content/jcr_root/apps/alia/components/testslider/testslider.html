@@ -1,0 +1,96 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.css @ categories='academy-alia.heroslider'}"/>
+</sly>
+
+<!--/*
+    Hero Slider Component
+    Uses Sling Models to render a list of slides with image, title,
+    pretitle (optional), subtitle (optional), and CTA (optional).
+*/-->
+<div class="cmp-heroslider" data-cmp-is="heroslider">
+    <sly data-sly-use.slider="it.codeland.academy.alia.core.models.HeroSliderModel" />
+
+    <sly data-sly-test="${slider.slides.size > 0}">
+
+        <!-- Slide counter -->
+        <div class="cmp-heroslider__counter">
+            <span class="cmp-heroslider__counter-current">1</span>
+            /
+            <span class="cmp-heroslider__counter-total">${slider.slides.size}</span>
+        </div>
+
+        <!-- Slides track -->
+        <div class="cmp-heroslider__track">
+            <sly data-sly-list.slide="${slider.slides}">
+                <div class="cmp-heroslider__slide ${itemList.first ? 'cmp-heroslider__slide--active' : ''}"
+                     data-index="${itemList.index}">
+
+                    <!-- Image / Video area (16:9 ratio wrapper) -->
+                    <div class="cmp-heroslider__media">
+                        <sly data-sly-test="${slide.imageReference}">
+                            <img class="cmp-heroslider__image"
+                                 src="${slide.imageReference}"
+                                 alt="${slide.imageAlt @ context='attribute'}"
+                                 loading="${itemList.first ? 'eager' : 'lazy'}" />
+                        </sly>
+                    </div>
+
+                    <!-- Text content -->
+                    <div class="cmp-heroslider__content">
+
+                        <!-- Pretitle (optional) -->
+                        <sly data-sly-test="${slide.pretitle}">
+                            <p class="cmp-heroslider__pretitle">${slide.pretitle @ context='text'}</p>
+                        </sly>
+
+                        <!-- Main title -->
+                        <sly data-sly-test="${slide.title}">
+                            <h2 class="cmp-heroslider__title">${slide.title @ context='text'}</h2>
+                        </sly>
+
+                        <!-- Subtitle (optional) -->
+                        <sly data-sly-test="${slide.subtitle}">
+                            <p class="cmp-heroslider__subtitle">${slide.subtitle @ context='text'}</p>
+                        </sly>
+
+                        <!-- CTA Button (optional) -->
+                        <sly data-sly-test="${slide.ctaLabel && slide.ctaLink}">
+                            <a class="cmp-heroslider__cta"
+                               href="${slide.ctaLink @ context='uri'}"
+                               target="${slide.ctaTarget @ context='attribute'}">
+                                ${slide.ctaLabel @ context='text'} ↗
+                            </a>
+                        </sly>
+
+                    </div><!-- /.cmp-heroslider__content -->
+                </div><!-- /.cmp-heroslider__slide -->
+            </sly>
+        </div><!-- /.cmp-heroslider__track -->
+
+        <!-- Navigation arrows -->
+        <button class="cmp-heroslider__nav cmp-heroslider__nav--prev" aria-label="Previous slide">&#8249;</button>
+        <button class="cmp-heroslider__nav cmp-heroslider__nav--next" aria-label="Next slide">&#8250;</button>
+
+        <!-- Dot indicators -->
+        <div class="cmp-heroslider__indicators" role="tablist" aria-label="Slide indicators">
+            <sly data-sly-list.slide="${slider.slides}">
+                <button class="cmp-heroslider__dot ${itemList.first ? 'cmp-heroslider__dot--active' : ''}"
+                        role="tab"
+                        aria-selected="${itemList.first ? 'true' : 'false'}"
+                        aria-label="Go to slide ${itemList.count}"
+                        data-index="${itemList.index}"></button>
+            </sly>
+        </div>
+
+    </sly><!-- /data-sly-test slides -->
+
+    <!-- Edit placeholder when no slides are configured -->
+    <sly data-sly-test="${!slider.slides.size && wcmmode.edit}">
+        <div class="cmp-heroslider__placeholder">
+            <p>Hero Slider — open the dialog to add slides.</p>
+        </div>
+    </sly>
+
+</div><!-- /.cmp-heroslider -->
+
+<sly data-sly-call="${clientlib.js @ categories='academy-alia.heroslider'}"/>

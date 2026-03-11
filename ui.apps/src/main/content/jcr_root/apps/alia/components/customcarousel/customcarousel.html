@@ -1,0 +1,90 @@
+<!--/* customcarousel.html */-->
+<sly data-sly-use.model="it.codeland.academy.alia.core.models.CustomCarouselModel"/>
+
+<div class="cmp-customcarousel"
+     data-autoplay-speed="${model.autoplaySpeed @ context='attribute'}"
+     data-transition="${model.transitionStyle @ context='attribute'}">
+
+    <!--/* Caption Overlay */-->
+    <sly data-sly-test="${properties.captionOverlay}">
+        <div class="cmp-customcarousel__caption-overlay">
+            <p>${properties.captionOverlay @ context='text'}</p>
+        </div>
+    </sly>
+
+    <!--/* Slides */-->
+    <sly data-sly-test="${model.slides.size > 0}">
+        <div class="cmp-customcarousel__track">
+            <sly data-sly-list.slide="${model.slides}">
+                <div class="cmp-customcarousel__slide" style="display: none;">
+                    <h3 class="cmp-customcarousel__slide-title">
+                        ${slide.name @ context='text'}
+                    </h3>
+                    <sly data-sly-test="${slide.subText}">
+                        <p class="cmp-customcarousel__slide-subtext">
+                            ${slide.subText @ context='html'}
+                        </p>
+                    </sly>
+                </div>
+            </sly>
+        </div>
+
+        <!--/* Pagination Controls */-->
+        <sly data-sly-test="${model.slides.size > 1}">
+            <nav class="cmp-customcarousel__pagination">
+                <a class="cmp-customcarousel__pagination-btn" id="prevBtn">&lsaquo; Prev</a>
+                <span class="cmp-customcarousel__pagination-info"></span>
+                <a class="cmp-customcarousel__pagination-btn" id="nextBtn">Next &rsaquo;</a>
+            </nav>
+        </sly>
+    </sly>
+
+    <!--/* Edit mode placeholder */-->
+    <sly data-sly-test="${model.slides.size == 0 && wcmmode.edit}">
+        <div class="cmp-customcarousel__placeholder">
+            Custom Carousel — open the dialog to configure slides.
+        </div>
+    </sly>
+</div>
+
+<script>
+(function() {
+    var carousel = document.querySelector('.cmp-customcarousel');
+    if (!carousel) return;
+
+    var slides = carousel.querySelectorAll('.cmp-customcarousel__slide');
+    var prevBtn = carousel.querySelector('#prevBtn');
+    var nextBtn = carousel.querySelector('#nextBtn');
+    var info = carousel.querySelector('.cmp-customcarousel__pagination-info');
+    var current = 0;
+    var autoplaySpeed = parseInt(carousel.getAttribute('data-autoplay-speed')) || 5000;
+
+    function showSlide(index) {
+        slides.forEach(function(s) { s.style.display = 'none'; });
+        slides[index].style.display = 'block';
+        if (info) info.textContent = (index + 1) + ' / ' + slides.length;
+    }
+
+    if (slides.length > 0) {
+        showSlide(current);
+
+        if (prevBtn) prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            current = (current - 1 + slides.length) % slides.length;
+            showSlide(current);
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            current = (current + 1) % slides.length;
+            showSlide(current);
+        });
+
+        // Autoplay
+        setInterval(function() {
+            current = (current + 1) % slides.length;
+            showSlide(current);
+        }, autoplaySpeed);
+    }
+})();
+</script>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Client Library definition for the Hero Slider.
+    Place at: /apps/academy-alia/components/heroslider/clientlibs/.content.xml
+-->
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:ClientLibraryFolder"
+          categories="[academy-alia.heroslider]"
+          allowProxy="{Boolean}true"/>

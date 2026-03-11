@@ -1,0 +1,214 @@
+/* ==========================================================================
+   Hero Slider — cmp-heroslider
+   Vanilla CSS; no external dependencies required.
+   ========================================================================== */
+
+/* ---------- Root container ---------- */
+.cmp-heroslider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #1a1a2e;
+    color: #fff;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    border-radius: 4px;
+    /* Give the component a defined height so slides can be absolutely stacked */
+    min-height: 480px;
+}
+
+/* ---------- Slide counter ---------- */
+.cmp-heroslider__counter {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    z-index: 10;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- Track ---------- */
+.cmp-heroslider__track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------- Individual slide ---------- */
+.cmp-heroslider__slide {
+    position: absolute;
+    inset: 0;                  /* top/right/bottom/left: 0 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 64px 80px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    pointer-events: none;
+}
+
+.cmp-heroslider__slide--active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    position: relative;        /* active slide takes up flow height */
+}
+
+/* ---------- Media / image wrapper ---------- */
+.cmp-heroslider__media {
+    width: 100%;
+    max-width: 680px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cmp-heroslider__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------- Text content ---------- */
+.cmp-heroslider__content {
+    text-align: center;
+    max-width: 720px;
+}
+
+/* Pretitle */
+.cmp-heroslider__pretitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 8px;
+}
+
+/* Main title */
+.cmp-heroslider__title {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+}
+
+/* Subtitle */
+.cmp-heroslider__subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+/* CTA button */
+.cmp-heroslider__cta {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.cmp-heroslider__cta:hover,
+.cmp-heroslider__cta:focus-visible {
+    background: #fff;
+    color: #1a1a2e;
+    outline: none;
+}
+
+/* ---------- Navigation arrows ---------- */
+.cmp-heroslider__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.cmp-heroslider__nav:hover,
+.cmp-heroslider__nav:focus-visible {
+    background: rgba(255, 255, 255, 0.28);
+    outline: 2px solid #fff;
+}
+
+.cmp-heroslider__nav--prev { left: 12px; }
+.cmp-heroslider__nav--next { right: 12px; }
+
+/* ---------- Dot indicators ---------- */
+.cmp-heroslider__indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.cmp-heroslider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.cmp-heroslider__dot--active {
+    background: #fff;
+    transform: scale(1.25);
+}
+
+/* ---------- Edit-mode placeholder ---------- */
+.cmp-heroslider__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    padding: 32px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .cmp-heroslider__slide {
+        padding: 40px 20px 72px;
+    }
+
+    .cmp-heroslider__nav {
+        display: none; /* rely on dots on mobile */
+    }
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Hero Slider"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+        <items jcr:primaryType="nt:unstructured">
+
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!--
+                        composite="{Boolean}true" alone is not enough.
+                        The multifield also needs granite:class="js-coral-multifield-add"
+                        is NOT needed — but the field child MUST use the
+                        "granite/ui/components/coral/foundation/form/multifield" item wrapper
+                        with the correct namePrefix so each item saves as a child node.
+                    -->
+                    <slides
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                        composite="{Boolean}true"
+                        fieldLabel="Slides"
+                        fieldDescription="Add, remove, or reorder slides."
+                        name="./slides">
+
+                        <!--
+                            The field node MUST have:
+                              sling:resourceType = granite/ui/components/coral/foundation/container
+                              granite:class      = coral-Form-fieldset
+                            This tells AEM to treat each multifield item as a
+                            separate child node (item0, item1, …) under ./slides
+                        -->
+                        <field
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            name="./slides">
+
+                            <items jcr:primaryType="nt:unstructured">
+
+                                <imageReference
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Image"
+                                    fieldDescription="Select a DAM asset (16:9 ratio recommended)."
+                                    name="./imageReference"
+                                    rootPath="/content/dam"
+                                    required="{Boolean}true"
+                                    filter="hierarchyNotFile"/>
+
+                                <imageAlt
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Image Alt Text"
+                                    fieldDescription="Describe the image for screen readers."
+                                    name="./imageAlt"
+                                    required="{Boolean}true"/>
+
+                                <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Title"
+                                    fieldDescription="Main headline displayed on the slide."
+                                    name="./title"
+                                    required="{Boolean}true"/>
+
+                                <pretitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Pretitle (optional)"
+                                    fieldDescription="Small label shown above the main title."
+                                    name="./pretitle"/>
+
+                                <subtitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                    fieldLabel="Subtitle (optional)"
+                                    fieldDescription="Supporting text shown below the title."
+                                    name="./subtitle"
+                                    rows="3"/>
+
+                                <ctaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="CTA Button Label (optional)"
+                                    name="./ctaLabel"/>
+
+                                <ctaLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="CTA Button Link (optional)"
+                                    name="./ctaLink"/>
+
+                                <ctaTarget
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="CTA Opens In"
+                                    name="./ctaTarget">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <self
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Same tab"
+                                            value="_self"
+                                            selected="{Boolean}true"/>
+                                        <blank
+                                            jcr:primaryType="nt:unstructured"
+                                            text="New tab"
+                                            value="_blank"/>
+                                    </items>
+                                </ctaTarget>
+
+                            </items>
+                        </field>
+                    </slides>
+
+                </items>
+            </column>
+
+        </items>
+    </content>
+</jcr:root>

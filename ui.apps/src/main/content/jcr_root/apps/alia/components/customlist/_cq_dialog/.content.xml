@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Custom List"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- Field 1: Parent Page -->
+                    <parentPage
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Parent Page"
+                        fieldDescription="Select the parent page whose children will be listed."
+                        name="./parentPage"
+                        rootPath="/content"/>
+
+                    <!-- Field 2: Section Label (NEW) -->
+                    <sectionLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Section Label"
+                        fieldDescription="Heading displayed above the list."
+                        name="./sectionLabel"/>
+
+                    <!-- Field 3: Cards per Row (NEW) -->
+                    <cardsPerRow
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Cards per Row"
+                        fieldDescription="How many cards to show per row on desktop."
+                        name="./cardsPerRow">
+                        <items jcr:primaryType="nt:unstructured">
+                            <two
+                                jcr:primaryType="nt:unstructured"
+                                text="2" value="2"/>
+                            <three
+                                jcr:primaryType="nt:unstructured"
+                                text="3" value="3"
+                                selected="{Boolean}true"/>
+                            <four
+                                jcr:primaryType="nt:unstructured"
+                                text="4" value="4"/>
+                        </items>
+                    </cardsPerRow>
+
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
