@@ -2,4 +2,4 @@
   "org.apache.sling.commons.log.file": "logs/project-academy-alia.log",
   "org.apache.sling.commons.log.file.number": 3,
   "org.apache.sling.commons.log.file.size": "'.'yyyy-MM-dd-HH-mm"
-}
+}
