@@ -1,0 +1,22 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< it.codeland.academy:academy-alia.ui.apps >--------------
+[INFO] Building Academy WKND Sites Project - UI apps 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------[ content-package ]---------------------------
+[INFO] 
+[INFO] --- clean:3.0.0:clean (default-clean) @ academy-alia.ui.apps ---
+[INFO] Deleting C:\Users\aliat\Documents\project\academy-alia\ui.apps\target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.377 s
+[INFO] Finished at: 2026-03-12T16:07:49+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-clean-plugin:3.0.0:clean (default-clean) on project academy-alia.ui.apps: Failed to clean project: Failed to delete C:\Users\aliat\Documents\project\academy-alia\ui.apps\target\generated-sources\htl\org\apache\sling\scripting\sightly\apps\alia\components\customcarousel\customcarousel__002e__html.java -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

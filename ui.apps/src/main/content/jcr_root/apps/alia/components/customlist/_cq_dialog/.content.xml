@@ -56,6 +56,18 @@
                         </items>
                     </cardsPerRow>
 
+                    <!-- Field 4: Highlight Color (Part 3 Datasource Assignment) -->
+                    <highlightColor
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Highlight Color"
+                        fieldDescription="Select a highlight color (populated dynamically via Servlet)."
+                        name="./highlightColor">
+                        <datasource
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="alia/datasource/colors"/>
+                    </highlightColor>
+
                 </items>
             </column>
         </items>

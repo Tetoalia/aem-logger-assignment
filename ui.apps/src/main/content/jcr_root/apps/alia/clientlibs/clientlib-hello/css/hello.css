@@ -1,0 +1,28 @@
+/* hello.css — styles for content injected by HelloServlet */
+.cmp-hello-target {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: #f0f4ff;
+    border-left: 4px solid #4a6cf7;
+    border-radius: 4px;
+    font-family: sans-serif;
+}
+
+.cmp-hello-target .hello-servlet-result h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3a8c;
+    font-size: 1.1rem;
+}
+
+.cmp-hello-target .hello-servlet-result p {
+    margin: 0.25rem 0;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.cmp-hello-target .hello-servlet-result code {
+    background: #e0e7ff;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}

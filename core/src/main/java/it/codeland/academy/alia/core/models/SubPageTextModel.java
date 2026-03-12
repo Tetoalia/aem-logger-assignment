@@ -79,8 +79,8 @@ public class SubPageTextModel {
             ));
         }
 
-        // Calculate total pages
-        totalPages = (int) Math.ceil((double) allItems.size() / PAGE_SIZE);
+        // Calculate total pages (minimum 1 to prevent IndexOutOfBoundsException when empty)
+        totalPages = Math.max(1, (int) Math.ceil((double) allItems.size() / PAGE_SIZE));
 
         // Clamp current page
         if (currentPageNum < 1) currentPageNum = 1;
